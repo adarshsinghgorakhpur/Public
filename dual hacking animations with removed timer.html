@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Dual hacking Animation </title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: black;
+      display: flex;
+    }
+ 
+    /* Left Hacklines Section */
+    #left-container {
+      width: 30%;
+      background: black;
+      color: #0F0;
+      font-family: "Courier New", Courier, monospace;
+      overflow-y: visible;
+      padding: 20px;
+    }
+
+    .line {
+      font-weight: bold;
+      opacity: 0;
+      animation: fade-in 2s linear forwards infinite;
+    }
+
+    @keyframes fade-in {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Right Animation Section */
+    #right-container {
+      width: 70%;
+      position: relative;
+    }
+
+    canvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #company-container {
+      position: absolute;
+      bottom: 0.1%;
+      left: 1%;
+      text-align: center;
+    }
+
+    #company-logo {
+      width: 120px;
+      height: 80px;
+      margin-bottom: 3px;
+    }
+    
+    #danger-message {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: red;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
+      font-size: 1.5rem;
+      font-weight: 900;
+      animation: fadeInOut 2s ease-in-out infinite;
+    }
+
+    #danger-image-container {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: fadeInOut .5s ease-in-out infinite;
+    }
+
+    #danger-image {
+      width: 300px;
+      height: 300px;
+      animation: fadeInOut .5s ease-in-out infinite;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Hacked System Warning Screen -->
+<div id="left-container">
+  <div id="hack-lines"></div>
+  </div>
+  <div id="right-container">
+    <canvas id="hacklinesCanvas"></canvas>
+  </div>
+  <div id="danger-message">
+    <span>Attention: Your System is Hacked!</span>
+  </div>
+  <div id="danger-image-container">
+    <img id="danger-image" src="https://png.pngtree.com/png-vector/20221112/ourmid/pngtree-vector-danger-icon-clipart-transparent-background-png-image_6441678.png" alt="Danger Sign">
+  </div>
+  <div id="hacking-message">
+    <p>Close the tab immediately, or else all your data will be transferred to the server!</p>
+  </div>
+</div>
+
+<script>
+  // Hacking screen lines
+  const hackLines = [
+    "Initializing System Loading Drivers...",
+    "Accessing Network...",
+    "Bypassing Firewall...",
+    "Connection Established...",
+    "Decrypting Passwords...",
+    "Running Exploits...",
+    "Launching System Override...",
+    "Bypassing Security Protocols...",
+    "Decrypting Encryption Layers...",
+    "Accessing Restricted Files...",
+    "Injecting Code...",
+    "Operation Complete: System Breached!",
+    "System Hacked Successfully!",
+    "Sending Viruses!",
+    "Decrypting System Passwords!",
+    "Sending Data to the Server!",
+    "Decrypting Passwords...",
+    "Running Exploits...",
+    "Launching System Override...",
+    "Bypassing Security Protocols...",
+    "Decrypting Encryption Layers...",
+    "Accessing Restricted Files...",
+    "Injecting Code...",
+  ];
+
+  const hackLinesContainer = document.getElementById("hack-lines");
+  let lineIndex = 0;
+
+  function displayHackLines() {
+    if (lineIndex < hackLines.length) {
+      const line = document.createElement("div");
+      line.classList.add("line");
+      line.textContent = hackLines[lineIndex++];
+      hackLinesContainer.appendChild(line);
+    }
+  }
+
+  setInterval(displayHackLines, 500);
+
+  // Right animation logic
+  const canvas = document.getElementById("hacklinesCanvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth * 0.7;
+  canvas.height = window.innerHeight;
+
+  const columns = Math.floor(canvas.width / 20);
+  const drops = Array(columns).fill(1);
+  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+  function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#0F0";
+    ctx.font = "20px monospace";
+
+    drops.forEach((y, index) => {
+      const text = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillText(text, index * 20, y * 20);
+
+      if (y * 20 > canvas.height || Math.random() > 0.95) {
+        drops[index] = 0;
+      }
+      drops[index]++;
+    });
+  }
+
+  setInterval(draw, 25);
+
+</script>
+
+</body>
+</html>
